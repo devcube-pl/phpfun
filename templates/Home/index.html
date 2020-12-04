@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<style>
+    .jumbotron {
+        margin-top: 100px;
+    }
+</style>
+<div class="jumbotron">
+    {% if app.isAuthenticated %}
+    <h1>Dzień dobry!</h1>
+    <p class="lead">Zalogowano jako: {{ app.user.name|upper }}</p>
+    <p class="lead">Adres e-mail: {{ app.user.email | replace({'@':'[ at ]'}) }}</p>
+    <p class="lead">Data utworzenia konta: {{ app.user.createdAt|date('d.m.Y') }}</p>
+    <a class="btn btn-sm btn-secondary"
+       href="/wyloguj" role="button">Wyloguj</a>
+    {% else %}
+    <h1>PHP/FUN</h1>
+    <p class="lead">Stack technologiczny: PHP 7.4, MySQL, Apache2, Bootstrap 4.5, REST API, OAuth z API Allegro</p>
+    {% endif %}
+</div>
+{% endblock %}

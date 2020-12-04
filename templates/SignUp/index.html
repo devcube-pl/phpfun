@@ -1,0 +1,38 @@
+{% extends '_base.html' %}
+
+{% block styles %}
+<link href="/css/login.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <form class="form-signin" method="post" action="/rejestracja">
+        {% if errors is defined %}
+        <div class="alert alert-warning" role="alert">
+            {% for error in errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Tworzenie konta</h1>
+        <label for="inputName" class="sr-only">Imię</label>
+        <input type="text" id="inputName" name="name" class="form-control" placeholder="Wpisz imię" required autofocus>
+
+        <label for="inputEmail" class="sr-only">Adres e-mail</label>
+        <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Podaj e-mail" required>
+
+        <label for="inputPassword" class="sr-only">Hasło</label>
+        <input type="password" id="inputPassword" name="pwd" class="form-control" placeholder="Ustal hasło" required>
+
+        <label for="inputPassword2" class="sr-only">Powtórz hasło</label>
+        <input type="password" id="inputPassword2" name="pwd2" class="form-control" placeholder="Wpisz hasło ponownie" required>
+
+
+        <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Utwórz konto</button>
+        <br>
+        <p>Posiadasz już konto? <a href="/logowanie">Zaloguj się</a></p>
+    </form>
+</div>
+
+{% endblock %}

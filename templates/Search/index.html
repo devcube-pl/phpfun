@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<h1 class="display-4">Wyniki wyszukiwania: {{ phrase }}</h1>
+
+<p class="lead">
+    Pobieranie danych z API Allegro za pomocą bibliteki Guzzle. Autoryzacja z wykorzystaniem OAuth 2.0 <strong>Grant Type: client_credentials</strong>.
+</p>
+
+{% if items is empty %}
+<div class="alert alert-secondary" role="alert">
+    Brak wyników wyszukiwania dla frazy: <strong>{{ phrase }}</strong>
+</div>
+{% endif %}
+
+{% for item in items %}
+<hr>
+<div class="media">
+    {% if item.images is not empty %}
+    <img src="{{ item.images[0].url }}" style="width: 100px;max-height: 100px;" class="align-self-center mr-3">
+    {% else %}
+    <img src="/img/placeholder.jpg" style="width: 100px;" class="align-self-center mr-3">
+    {% endif %}
+    <div class="media-body">
+        <h5 class="mt-0">{{ item.name }}</h5>
+        <p>Sprzedawca: {{ item.seller.login }}</p>
+        <p>Cena: {{ item.sellingMode.price.amount }} {{ item.sellingMode.price.currency }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

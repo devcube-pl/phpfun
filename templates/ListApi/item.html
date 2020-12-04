@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<h2 class="display-4">Książka z REST API</h2>
+
+<p>
+    <a href="/lista-api" class="btn btn-secondary">Wróć do listy</a>
+</p>
+
+<div class="jumbotron">
+    <h1 class="display-4">{{ item.title }}</h1>
+    <p class="lead">Autorem tej książki jest <strong>{{ item.author }}</strong>. Ostatnio kosztowała <strong>{{ item.price }}</strong>.</p>
+    <hr class="my-4">
+    <a class="btn btn-warning btn-lg" href="/lista-api/{{item.id}}/edycja" role="button">Edytuj</a>
+    <a class="btn btn-danger btn-lg" href="/lista-api/{{item.id}}/usun"
+       onclick="return confirm('Czy na pewno usunąć książkę?');" role="button">Usuń</a>
+</div>
+
+
+{% endblock %}
